@@ -1,14 +1,14 @@
 import 'package:dojo_challenges/repository/repository.dart';
 import 'package:dojo_challenges/util/color_constants.dart';
+import 'package:dojo_challenges/widget/movie_scaffold.dart';
+import 'package:dojo_challenges/widget/splash_screen.dart';
+import 'package:dojo_challenges/widget/success.dart';
 import 'package:flutter/material.dart';
 
 import '../model/movie_list.dart';
 import '../resource/data_state.dart';
-import '../util/api_service_constants.dart';
 import '../util/asset_constants.dart';
-import '../util/number_constants.dart';
 import '../util/string_constants.dart';
-import '../widget/movie_card.dart';
 import '../widget/unsuccess.dart';
 
 class HomePage extends StatelessWidget {
@@ -18,52 +18,39 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text(StringConstants.homePageTitle)),
-      body: SafeArea(
-        child: FutureBuilder<DataState<MovieList>>(
-          future: repository.getMovieList(),
-          builder: (context, AsyncSnapshot<DataState<MovieList>> snapshot) {
-            if (snapshot.hasData) {
-              switch (snapshot.data!.type) {
-                case DataStateType.success:
-                  return GridView.builder(
-                    itemCount: snapshot.data!.data!.results.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount:
-                              NumberConstants.homePageCrossAxisCount,
-                        ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return GridTile(
-                        child: MovieCard(
-                          title: snapshot.data!.data!.results[index].title,
-                          image:
-                              '${ApiServiceConstants.imageNetwork}${snapshot.data!.data!.results[index].posterPath}',
-                        ),
-                      );
-                    },
-                  );
-                case DataStateType.empty:
-                  return Unsuccess(
-                    text: StringConstants.homePageEmptyMessage,
-                    image: AssetConstants.homePageEmptyImage,
-                  );
-                case DataStateType.error:
-                  return Unsuccess(
-                    text: snapshot.data!.error!,
-                    image: AssetConstants.homePageErrorImage,
-                  );
-              }
-            }
-            return const Center(
-              child: CircularProgressIndicator(
-                color: ColorConstants.appThemeColor,
-              ),
-            );
-          },
-        ),
-      ),
+    return FutureBuilder<DataState<MovieList>>(
+      future: repository.getMovieList(),
+      builder: (context, AsyncSnapshot<DataState<MovieList>> snapshot) {
+        if (snapshot.hasData) {
+          switch (snapshot.data!.type) {
+            case DataStateType.success:
+              return MovieScaffold(
+                title: StringConstants.homePageTitle,
+                child: Success(movies: snapshot.data!.data!.results),
+              );
+            case DataStateType.empty:
+              return MovieScaffold(
+                title: StringConstants.homePageTitle,
+                child: Unsuccess(
+                  text: StringConstants.homePageEmptyMessage,
+                  image: AssetConstants.homePageEmptyImage,
+                ),
+              );
+            case DataStateType.error:
+              return MovieScaffold(
+                title: StringConstants.homePageTitle,
+                child: Unsuccess(
+                  text: snapshot.data!.error!,
+                  image: AssetConstants.homePageErrorImage,
+                ),
+              );
+          }
+        }
+        return MovieScaffold(
+          backgroundColor: ColorConstants.splashScreenColor,
+          child: SplashScreen(),
+        );
+      },
     );
   }
 }
