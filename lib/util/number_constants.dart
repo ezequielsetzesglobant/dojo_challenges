@@ -1,5 +1,5 @@
 abstract class NumberConstants {
-  static const int appThemeColorHex = 0xffdebf37;
+  static const int appThemeColorHex = 0xFFDEBF37;
 
   static const int homePageCrossAxisCount = 2;
   static const double homePageUnsuccessMessageTextStyleFontSize = 40.0;
@@ -15,6 +15,9 @@ abstract class NumberConstants {
   static const double defaultPageTextStyleFontSize = 40.0;
 
   static const double unsuccessPadding = 20.0;
-  static const double unsuccessImageSize = 200.0;
-  static const double unsuccessSizedBox = 50.0;
+
+  static const int splashScreenColorHex = 0xFFE6E4B5;
+
+  static const double imageSize = 200.0;
+  static const double sizedBoxSize = 50.0;
 }
