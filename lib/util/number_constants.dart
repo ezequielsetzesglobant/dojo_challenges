@@ -2,7 +2,7 @@ abstract class NumberConstants {
   static const int appThemeColorHex = 0xffdebf37;
 
   static const int homePageCrossAxisCount = 2;
-  static const double homepageErrorMessageTextStyleFontSize = 40.0;
+  static const double homePageUnsuccessMessageTextStyleFontSize = 40.0;
 
   static const double movieCardBorderWidth = 3.0;
   static const double movieCardPadding = 10.0;
@@ -13,4 +13,8 @@ abstract class NumberConstants {
 
   static const double defaultPagePadding = 20.0;
   static const double defaultPageTextStyleFontSize = 40.0;
+
+  static const double unsuccessPadding = 20.0;
+  static const double unsuccessImageSize = 200.0;
+  static const double unsuccessSizedBox = 50.0;
 }
