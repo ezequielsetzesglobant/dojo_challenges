@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data_source/local/data_base.dart';
-import '../data_source/remote/api_service.dart';
+import '../data_source/local/data_base/data_base.dart';
+import '../data_source/remote/api_service/api_service.dart';
 import '../repository/repository.dart';
 import '../util/route_constants.dart';
 import '../view/default_page.dart';
