@@ -1,20 +1,36 @@
-import 'package:dojo_challenges/repository/repository.dart';
-import 'package:dojo_challenges/util/color_constants.dart';
-import 'package:dojo_challenges/widget/movie_scaffold.dart';
-import 'package:dojo_challenges/widget/splash_screen.dart';
-import 'package:dojo_challenges/widget/success.dart';
 import 'package:flutter/material.dart';
 
+import '../data_source/local/data_base/data_base.dart';
+import '../data_source/remote/api_service/api_service.dart';
 import '../model/movie_list.dart';
+import '../repository/popularity_repository.dart';
+import '../repository/repository_interface.dart';
 import '../resource/data_state.dart';
 import '../util/asset_constants.dart';
+import '../util/color_constants.dart';
 import '../util/string_constants.dart';
+import '../widget/movie_scaffold.dart';
+import '../widget/splash_screen.dart';
+import '../widget/success.dart';
 import '../widget/unsuccess.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.repository});
 
-  final Repository repository;
+  final RepositoryInterface repository;
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late RepositoryInterface repository;
+
+  @override
+  void initState() {
+    super.initState();
+    repository = widget.repository;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +43,14 @@ class HomePage extends StatelessWidget {
               return MovieScaffold(
                 title: StringConstants.homePageTitle,
                 child: Success(movies: snapshot.data!.data!.results),
+                callBack: () {
+                  setState(() {
+                    repository = PopularityRepository(
+                      apiService: ApiService(),
+                      dataBase: DataBase.instance,
+                    );
+                  });
+                },
               );
             case DataStateType.empty:
               return MovieScaffold(

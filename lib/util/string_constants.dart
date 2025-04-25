@@ -5,4 +5,5 @@ abstract class StringConstants {
   static const String homePageEmptyMessage =
       'There aren\'t any popular movies to display';
   static const String defaultPageMessage = 'Undefined route';
+  static const movieScaffoldButtonText = 'Popular movies';
 }
