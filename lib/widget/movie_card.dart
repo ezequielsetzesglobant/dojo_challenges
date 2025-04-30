@@ -35,7 +35,7 @@ class MovieCard extends StatelessWidget {
                     imageUrl: image,
                     placeholder:
                         (context, url) => Image.asset(
-                          AssetConstants.movieCardPlaceholderImage,
+                          AssetConstants.movieCardPlaceholder,
                           width:
                               NumberConstants.movieCardCachedNetworkImageSize,
                           height:
@@ -43,7 +43,7 @@ class MovieCard extends StatelessWidget {
                         ),
                     errorWidget:
                         (context, url, error) => Image.asset(
-                          AssetConstants.movieCardPlaceholderImage,
+                          AssetConstants.movieCardPlaceholder,
                           width:
                               NumberConstants.movieCardCachedNetworkImageSize,
                           height:
