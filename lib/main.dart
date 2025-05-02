@@ -1,9 +1,9 @@
+import 'package:dojo_challenges/src/config/theme/app_themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'route/app_routes.dart';
-import 'util/color_constants.dart';
-import 'util/route_constants.dart';
+import 'src/config/route/app_routes.dart';
+import 'src/core/util/route_constants.dart';
 
 void main() {
   runApp(ProviderScope(child: const MyApp()));
@@ -16,12 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(
-          color: ColorConstants.appThemeColor,
-          centerTitle: true,
-        ),
-      ),
+      theme: AppThemes.appTheme,
       initialRoute: RouteConstants.homeRoute,
       onGenerateRoute: AppRoutes.generateRoute,
     );
