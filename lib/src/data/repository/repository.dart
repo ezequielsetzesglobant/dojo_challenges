@@ -22,15 +22,14 @@ class Repository implements RepositoryInterface {
         try {
           await movieDao.deleteMovies();
           await movieDao.insertMovies(movieListDataState.data!.results);
-          final aa = DataSuccess(
+          return DataSuccess(
             movieListDataState.data!.copyWith(
               results: await movieDao.getMovies(),
             ),
           );
-          return aa;
         } catch (exception) {
           return DataFailed(
-            '${StringConstants.errorMessage}: ${exception.toString()}',
+            '${StringConstants.errorMessage}${exception.toString()}',
           );
         }
       case DataStateType.empty:
@@ -49,7 +48,7 @@ class Repository implements RepositoryInterface {
       }
     } catch (exception) {
       return DataFailed(
-        '${StringConstants.errorMessage}: ${exception.toString()}',
+        '${StringConstants.errorMessage}${exception.toString()}',
       );
     }
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:http/http.dart';
 
 import '../../core/resource/data_state.dart';
 import '../../core/util/string_constants.dart';
@@ -60,18 +61,29 @@ final popularityRepositoryProvider = FutureProvider<RepositoryInterface>((
 });
 
 final apiServiceProvider = Provider<ApiServiceInterface>((ref) {
-  return ApiService();
+  final clientProviderVariable = ref.watch(clientProvider);
+  return ApiService(client: clientProviderVariable);
+});
+
+final clientProvider = Provider<Client>((ref) {
+  return Client();
 });
 
 final dataBaseProvider = FutureProvider<DataBaseInterface>((ref) async {
-  final dataBase = DataBase.instance;
+  final dataBase = ref.watch(dataBaseInstanceProvider);
   await dataBase.openDataBase();
   ref.onDispose(() async {
     try {
       await dataBase.closeDataBase();
     } catch (exception) {
-      debugPrint('${StringConstants.errorMessage}: ${exception.toString()}');
+      debugPrint(
+        '${StringConstants.providerDataBaseErrorMessage}${exception.toString()}',
+      );
     }
   });
   return dataBase;
+});
+
+final dataBaseInstanceProvider = Provider<DataBaseInterface>((ref) {
+  return DataBase.instance;
 });
