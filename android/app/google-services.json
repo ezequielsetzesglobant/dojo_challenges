@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "409513813064",
+    "project_id": "dojochallenges",
+    "storage_bucket": "dojochallenges.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:409513813064:android:18c911787efc80b3ea647d",
+        "android_client_info": {
+          "package_name": "com.example.dojo_challenges"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEzMdRF5tQdchgYq9lCfLh6C9TG-qeF0w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
