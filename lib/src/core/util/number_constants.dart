@@ -2,8 +2,10 @@ abstract class NumberConstants {
   static const int homePageCrossAxisCount = 2;
 
   static const double movieScaffoldButtonPadding = 10.0;
-  static const double movieScaffoldButtonTextStyleFontSize = 30.0;
+  static const double movieScaffoldTextStyleFontSize = 30.0;
   static const double movieScaffoldSizedBoxHeight = 10.0;
+
+  static const double successButtonsPadding = 10.0;
 
   static const double unsuccessPadding = 20.0;
   static const double unsuccessMessageTextStyleFontSize = 40.0;
@@ -31,4 +33,5 @@ abstract class NumberConstants {
   static const int appThemeColorHex = 0xFFDEBF37;
   static const double imageSize = 200.0;
   static const double sizedBoxHeight = 50.0;
+  static const double generalTextStyleFontSize = 15.0;
 }

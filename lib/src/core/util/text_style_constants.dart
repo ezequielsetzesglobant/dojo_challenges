@@ -21,8 +21,8 @@ abstract class TextStyleConstants {
     fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle movieScaffoldButtonTextStyle = TextStyle(
-    fontSize: NumberConstants.movieScaffoldButtonTextStyleFontSize,
+  static const TextStyle generalTextStyle = TextStyle(
+    fontSize: NumberConstants.generalTextStyleFontSize,
     color: Colors.black45,
   );
 }
